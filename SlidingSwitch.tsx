@@ -2,34 +2,42 @@ import React, { useState } from "react";
 import classes from "./SlidingSwitch.module.scss";
 
 interface ISlidingSwitch {
-  isOn: boolean;
-  handleToggle: () => void;
+  modules: Array<object>;
+  index: number;
 }
 
-const SlidingSwitch: React.FC<ISlidingSwitch> = ({ isOn, handleToggle }) => {
-  console.log(isOn);
+const SlidingSwitch: React.FC<ISlidingSwitch> = ({ modules, index }) => {
+  const [switchToggle, setSwitchToggle] = useState(false);
+  const handleToggle = () => setSwitchToggle(!switchToggle);
 
   return (
-    <>
+    <div key={`react-switch-div-${index}`}>
       <input
-        checked={isOn}
         onChange={handleToggle}
         style={{ visibility: "hidden" }} /* hides default checkbox */
-        className={isOn ? classes.reactSwitchOn : classes.reactSwitchOff}
-        id={`react-switch-new`}
+        className={
+          switchToggle ? classes.reactSwitchOn : classes.reactSwitchOff
+        }
+        id={`react-switch-input-${index}`}
         type="checkbox"
       />
       <label
-        className={isOn ? classes.reactSwitchLabelOn : classes.reactSwitchLabel}
-        htmlFor={`react-switch-new`}
+        id={`react-switch-label`}
+        className={
+          switchToggle ? classes.reactSwitchLabelOn : classes.reactSwitchLabel
+        }
+        htmlFor={`react-switch-input-${index}`}
       >
         <span
+          id={`react-switch-ball`}
           className={
-            isOn ? classes.reactSwitchButtonOn : classes.reactSwitchButton
+            switchToggle
+              ? classes.reactSwitchButtonOn
+              : classes.reactSwitchButton
           }
         />
       </label>
-    </>
+    </div>
   );
 };
 
