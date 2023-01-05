@@ -1,0 +1,33 @@
+@import '../../../../shared/style/src/lib/scss/shared.scss';
+
+.matchFilter {
+  @include spanButtonLiFont;
+  input[type='radio'] {
+    display: none;
+  }
+
+  input[type='radio'] + label {
+    color: black;
+    font-size: 14px;
+    margin: 0 8px;
+  }
+
+  input[type='radio'] + label div {
+    background-color: $backgroundLight;
+    border: $border;
+    border-radius: 16px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 7px 15px;
+    &:hover {
+      background-color: $primaryLight;
+      border: 1px solid $primaryDark;
+    }
+  }
+
+  input[type='radio']:checked + label div {
+    background-color: $primaryDark;
+    border: 1px solid $primaryDark;
+    color: white;
+  }
+}
